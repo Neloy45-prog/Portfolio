@@ -1,0 +1,35 @@
+:root{--accent:#0b5ed7;--bg:#fff;--text:#111}
+body{font-family:Segoe UI, Roboto, Arial, sans-serif;margin:0;color:var(--text);background:var(--bg);line-height:1.5}
+header{padding:18px 20px;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;gap:18px}
+header h1{margin:0;font-size:1.25rem}
+.site-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:12px;align-items:center}
+.site-nav a{color:inherit;text-decoration:none;padding:8px 10px;border-radius:6px;display:inline-block}
+.site-nav a:hover{background:#f2f6ff;color:var(--accent)}
+.site-nav a.active{background:var(--accent);color:#fff}
+main{padding:20px}
+.container{display:flex;gap:20px;align-items:flex-start;padding-bottom:20px}
+img{border-radius:8px}
+/* Hero / home layout */
+.hero{display:flex;flex-direction:column;align-items:center;max-width:820px;margin:42px auto 60px auto;text-align:center;padding:28px 20px}
+.avatar{width:150px;height:150px;border-radius:50%;overflow:hidden;box-shadow:0 14px 30px rgba(11,94,215,0.12);border:6px solid #fff}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.hero h2{margin:18px 0 10px 0;font-size:1.125rem;color:#222}
+.hero h2 .name{color:var(--accent);font-weight:600}
+.hero p.lead{max-width:720px;color:#6b7280;margin:0 auto 18px;font-size:0.98rem;line-height:1.6}
+.socials{display:flex;gap:14px;justify-content:center;margin:18px 0}
+.socials a{width:46px;height:46px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#fff;box-shadow:0 8px 18px rgba(16,24,40,0.06);color:#444;text-decoration:none}
+.socials svg{width:18px;height:18px;fill:currentColor}
+.cta{display:flex;gap:14px;justify-content:center;margin-top:22px}
+.btn{padding:12px 20px;border-radius:10px;border:0;cursor:pointer;font-weight:600;box-shadow:0 10px 24px rgba(11,94,215,0.12)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-secondary{background:#fff;color:#111;border:1px solid #eef2ff;box-shadow:0 6px 16px rgba(16,24,40,0.04)}
+.btn:hover{opacity:0.95}
+section{margin-bottom:36px}
+.placeholder{color:#555;font-size:0.95rem}
+@media (max-width:640px){
+  .site-nav ul{flex-wrap:wrap}
+  .hero{margin:28px 18px;padding:18px}
+  .avatar{width:120px;height:120px}
+  .socials a{width:40px;height:40px}
+  .btn{padding:10px 16px}
+}
