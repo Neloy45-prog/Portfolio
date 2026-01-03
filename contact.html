@@ -15,10 +15,65 @@
   </header>
 
   <main>
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <p>Email: <a href="mailto:mushfiqueneloy@gmail.com">mushfiqueneloy@gmail.com</a></p>
-      <p>Phone: 01795876043</p>
+    <section id="contact" class="contact-section">
+      <div class="contact-header">
+        <h2>Get In Touch</h2>
+        <div class="divider" aria-hidden="true" style="width:48px;margin:10px auto;background:var(--accent)"></div>
+        <p class="sub">Have a question or want to work together? I'd love to hear from you. Send me a message and I'll respond as soon as possible.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-text"><strong>Email</strong><div><a href="mailto:mushfiqueneloy@gmail.com">mushfiqueneloy@gmail.com</a></div></div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-text"><strong>Phone</strong><div>+880 1795 876043</div></div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-text"><strong>Location</strong><div>Chittagong, Bangladesh</div></div>
+          </div>
+
+          <div class="note-box">
+            <strong>Note</strong>
+            <p style="margin:8px 0 0 0">To connect this form to Google Sheets, you can use services like:</p>
+            <ul style="margin:8px 0 0 16px;padding-left:20px;color:#475569">
+              <li>Google Apps Script with Web Apps</li>
+              <li>Zapier or Make.com (no-code solutions)</li>
+              <li>Google Sheets API with a backend service</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form id="contactForm" aria-label="Contact form">
+            <div class="form-row">
+              <label class="form-label" for="name">Name</label>
+              <input id="name" name="name" class="form-input" placeholder="Your name">
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="email">Email</label>
+              <input id="email" name="email" class="form-input" placeholder="your.email@example.com">
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="subject">Subject</label>
+              <input id="subject" name="subject" class="form-input" placeholder="What is this about?">
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="message">Message</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Your message..."></textarea>
+            </div>
+            <div class="form-row">
+              <button type="submit" class="send-btn"><span class="icon">✈️</span> Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </section>
   </main>
 
