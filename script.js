@@ -13,13 +13,17 @@ const menuItems = [
 // link to the in-page hash (single-page behaviour). Otherwise link to
 // separate page files (index.html for home).
 const navList = document.getElementById('navList');
+const isLocalFile = location.protocol === 'file:';
 if(navList){
   const currentFile = window.location.pathname.split('/').pop() || 'index.html';
   menuItems.forEach(item=>{
     const li = document.createElement('li');
     const a = document.createElement('a');
-    // Prefer in-page hash links when the section exists on this page
-    const sec = document.getElementById(item.id);
+    // Prefer in-page hash links when the section exists on this page.
+    // When running from file:// (local files opened directly), many
+    // browsers block fetch/XHR; in that case prefer full-page links so
+    // navigation works without a server.
+    const sec = !isLocalFile ? document.getElementById(item.id) : null;
     const href = sec ? '#' + item.id : (item.id === 'home' ? 'index.html' : item.id + '.html');
     a.href = href;
     a.textContent = item.label;
@@ -32,15 +36,37 @@ if(navList){
     li.appendChild(a);
     navList.appendChild(li);
   });
+
+  // If opened as local files (file://), embed full page content via iframes
+  if(isLocalFile){
+    menuItems.forEach(item=>{
+      const target = document.getElementById(item.id);
+      if(target){
+        // avoid injecting into home (home is already in-page)
+        if(item.id === 'home') return;
+        // only inject iframe if the section does not already contain the designed content
+        const hasContent = target.querySelector('.pub-card') || target.querySelector('.contact-form') || target.querySelector('.achievements-grid') || target.querySelector('.showcase-grid');
+        if(hasContent) return;
+        const iframe = document.createElement('iframe');
+        iframe.className = 'section-iframe';
+        iframe.src = item.id + '.html#' + item.id;
+        iframe.title = item.label + ' section';
+        iframe.loading = 'lazy';
+        target.appendChild(iframe);
+      }
+    });
+  }
 }
 
 // For single-page index.html we may still want to highlight sections when scrolling.
 // If the page has in-page sections, set up IntersectionObserver to update active state.
 const sections = {};
-menuItems.forEach(item=>{
-  const sec = document.getElementById(item.id);
-  if(sec) sections[item.id] = sec;
-});
+if(!isLocalFile){
+  menuItems.forEach(item=>{
+    const sec = document.getElementById(item.id);
+    if(sec) sections[item.id] = sec;
+  });
+}
 if(Object.keys(sections).length){
   const obsOptions = {root:null,rootMargin:'-40% 0px -40% 0px',threshold:0};
   const loadedSections = {};
@@ -63,6 +89,10 @@ if(Object.keys(sections).length){
       }
     }catch(err){
       console.error('Error loading section', id, err);
+      const target = document.getElementById(id);
+      if(target){
+        target.innerHTML = '<div class="load-fail">Could not load content automatically. <a href="'+id+'.html">Open full page</a></div>';
+      }
     }
   }
 
@@ -93,6 +123,18 @@ document.querySelectorAll('#navList a').forEach(a=>{
     // immediate visual feedback
     document.querySelectorAll('#navList a').forEach(el=>el.classList.remove('active'));
     a.classList.add('active');
+
+    // If running as local files, ensure navigation goes to full pages.
+    if(isLocalFile){
+      // If a href points to a hash we can't fetch in-file; navigate to the page instead
+      if(href && href.startsWith('#')){
+        const id = href.slice(1);
+        window.location.href = id === 'home' ? 'index.html' : id + '.html';
+        return;
+      }
+      // allow default navigation for page links
+      return;
+    }
 
     // If this is an in-page link, load the section HTML first and then scroll
     if(href && href.startsWith('#')){

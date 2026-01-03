@@ -108,8 +108,9 @@ section .divider{margin:10px auto}
 .pub-year{position:absolute;right:18px;top:18px;color:#94a3b8;font-weight:600}
 
 @media (max-width:760px){
-  .pub-card{flex-direction:row;align-items:flex-start}
-  .pub-year{position:static;margin-left:auto}
+  .pub-card{flex-direction:column;align-items:flex-start}
+  .pub-icon{margin-bottom:12px}
+  .pub-year{position:static;margin-top:12px;color:#94a3b8;font-weight:600}
 }
 
 /* Contact section */
@@ -131,6 +132,14 @@ section .divider{margin:10px auto}
 .form-textarea{min-height:160px;padding:12px 14px;border-radius:10px;border:1px solid #e6eefc;background:#fff;resize:vertical}
 .send-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:10px;border:0;background:var(--accent);color:#fff;font-weight:700;cursor:pointer}
 .send-btn .icon{transform:translateY(1px)}
+
+/* Make form controls fill available width */
+.contact-form .form-input,
+.contact-form .form-textarea,
+.contact-form .send-btn{width:100%}
+
+/* iframe fallback for local file viewing */
+.section-iframe{width:100%;min-height:520px;border:0;border-radius:10px;box-shadow:0 12px 30px rgba(16,24,40,0.06);overflow:hidden}
 
 @media (max-width:980px){
   .contact-grid{grid-template-columns:1fr}
