@@ -19,7 +19,7 @@ img{border-radius:8px}
 .avatar{width:150px;height:150px;border-radius:50%;overflow:hidden;box-shadow:0 14px 30px rgba(11,94,215,0.12);border:6px solid #fff}
 .avatar img{width:100%;height:100%;object-fit:cover;display:block}
 .hero h2{margin:18px 0 10px 0;font-size:1.125rem;color:#222}
-.hero h2 .name{color:var(--accent);font-weight:600}
+.hero h2 .name{color:#000;font-weight:inherit}
 .hero p.lead{max-width:720px;color:#6b7280;margin:0 auto 18px;font-size:0.98rem;line-height:1.6}
 .socials{display:flex;gap:14px;justify-content:center;margin:18px 0}
 .socials a{width:46px;height:46px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#fff;box-shadow:0 8px 18px rgba(16,24,40,0.06);color:#444;text-decoration:none}
